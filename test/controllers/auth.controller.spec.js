@@ -6,9 +6,6 @@ describe('AuthController', function () {
         console.log('running before each');
         authController.setRoles(['user']);
     });
-    beforeEach('this function is erroring intentionally', function erroringFunction () {
-        throw({error:'error'})
-    });
     describe('isAuthorised', function () {
         it('should return false if not authorised', function(){
             assert.equal(false, authController.isAuthorised('admin'));
@@ -17,15 +14,21 @@ describe('AuthController', function () {
             authController.setRoles(['user', 'admin']);
             assert.equal(true, authController.isAuthorised('admin'));
         })
+        it('should not allow a get if not authorised');
+        it('should allow a get if authorised');
     })
     describe('isAuthorisedAsync', function(){
 
-        it('should return false if not authorised', function(done){
-            authController.isAuthorisedAsync('admin',
+        it('should return false if not authorised', function (done) {
+            if (true) {//something environmental
+                this.skip
+            } else {
+                authController.isAuthorisedAsync('admin',
                 function(isAuth){
                     assert.equal(false, isAuth);
                     done();
-                });
+                });                
+            }
         })
     })
 });
