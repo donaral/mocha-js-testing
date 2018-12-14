@@ -12,6 +12,7 @@ describe('AuthController', function(){
     })
     describe('isAuthorisedAsync', function(){
         it('should return false if not authorised', function(done){
+            this.timeout(2500);
             authController.isAuthorisedAsync(['user'], 'admin',
                 function(isAuth){
                     assert.equal(false, isAuth);
