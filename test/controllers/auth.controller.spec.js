@@ -1,5 +1,8 @@
 var assert = require('assert');
 var authController = require('../../controllers/auth.controller');
+var expect = require('chai').expect;
+var should = require('chai').should();
+
 
 describe('AuthController', function () {
     beforeEach(function settingUpRoles () {
@@ -7,12 +10,16 @@ describe('AuthController', function () {
         authController.setRoles(['user']);
     });
     describe('isAuthorised', function () {
+
         it('should return false if not authorised', function(){
-            assert.equal(false, authController.isAuthorised('admin'));
+            var isAuth = authController.isAuthorised('admin');
+            expect(isAuth).to.be.false;
         })
+        
         it('should return true if authorised', function(){
             authController.setRoles(['user', 'admin']);
-            assert.equal(true, authController.isAuthorised('admin'));
+            var isAuth = authController.isAuthorised('admin');
+            isAuth.should.be.true;
         })
         it('should not allow a get if not authorised');
         it('should allow a get if authorised');
