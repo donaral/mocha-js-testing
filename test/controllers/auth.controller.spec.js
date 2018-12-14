@@ -2,9 +2,12 @@ var assert = require('assert');
 var authController = require('../../controllers/auth.controller');
 
 describe('AuthController', function () {
-    beforeEach(function () {
+    beforeEach(function settingUpRoles () {
         console.log('running before each');
         authController.setRoles(['user']);
+    });
+    beforeEach('this function is erroring intentionally', function erroringFunction () {
+        throw({error:'error'})
     });
     describe('isAuthorised', function () {
         it('should return false if not authorised', function(){
@@ -16,6 +19,7 @@ describe('AuthController', function () {
         })
     })
     describe('isAuthorisedAsync', function(){
+
         it('should return false if not authorised', function(done){
             authController.isAuthorisedAsync('admin',
                 function(isAuth){
