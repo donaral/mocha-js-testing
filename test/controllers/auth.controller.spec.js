@@ -20,15 +20,11 @@ describe('AuthController', function () {
     describe('isAuthorisedAsync', function(){
 
         it('should return false if not authorised', function (done) {
-            if (true) {//something environmental
-                this.skip
-            } else {
-                authController.isAuthorisedAsync('admin',
+            authController.isAuthorisedAsync('admin',
                 function(isAuth){
                     assert.equal(false, isAuth);
                     done();
-                });                
-            }
+                });
         })
     })
 });
